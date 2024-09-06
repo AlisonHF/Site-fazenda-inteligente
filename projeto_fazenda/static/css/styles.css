@@ -1,0 +1,34 @@
+@import url('https://fonts.googleapis.com/css2?family=Arvo&display=swap');
+
+* {
+    padding: 0;
+    margin: 0;
+}
+
+body, html {
+    height: 100%;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    font-family: 'Arvo', serif;
+}
+
+.menu {
+    background-color: green;
+    height: 60px;
+    align-content: center;
+    text-align: center;
+}
+
+a {
+    text-decoration: none;
+    margin: 20px;
+    color: white;
+    font-size: 18px;
+}
+
+h1 {
+    text-align: center;
+    color: green;
+    margin: 20px;
+}

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Listagem</title>
+</head>
+<body>
+
+    <div>
+        <table>
+
+            <tr>
+                <th>ID</th>
+                <th>Bloco</th>
+                <th>PH</th>
+                <th>Umidade</th>
+                <th>Textura</th>
+            </tr>
+
+            {% for dado in dados %}
+
+            <tr>    
+                <td>{{ dado.id }}</td>
+                <td>{{ dado.bloco }}</td>
+                <td>{{ dado.ph }}</td>
+                <td>{{ dado.umidade }}</td>
+                <td>{{ dado.textura }}</td>  
+            </tr>
+
+            {% endfor %}
+        </table>
+    </div>
+</body>
+</html>
+

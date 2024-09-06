@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Cadastro</title>
+    {% load static %}
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}" type="text/css">
+    
+  </head>
+  <body>
+
+    <header>
+        <div class="menu">
+            <a href="#">HOME</a>
+            <a href="#">COMO USAR</a>
+            <a href="#">SUPORTE</a>
+        </div>
+    </header>
+
+    <h1>Cadastro</h1>
+
+    
+    <form action="{% url 'dados_fazenda' %}" method="POST">
+      {% csrf_token %}
+      <div class="mb-3 row">
+        <label class="col-sm-2 col-form-label">Bloco: </label>
+        <div class="col-sm-10">
+          <input type="text" class="form-control" name="bloco">
+        </div>
+      </div>
+
+      <div class="mb-3 row">
+        <label class="col-sm-2 col-form-label">Cultura: </label>
+        <div class="col-sm-10">
+          <input type="text" class="form-control" name="cultura">
+        </div>
+      </div>
+
+      <div class="mb-3 row">
+        <label class="col-sm-2 col-form-label">PH: </label>
+        <div class="col-sm-10">
+          <input type="text" class="form-control" name="ph">
+        </div>
+      </div>
+
+      <div class="mb-3 row">
+        <label class="col-sm-2 col-form-label">Umidade: </label>
+        <div class="col-sm-10">
+          <input type="text" class="form-control" name="umidade">
+        </div>
+      </div>
+
+      <div class="mb-3 row">
+        <label class="col-sm-2 col-form-label">Textura: </label>
+        <div class="col-sm-10">
+          <input type="text" class="form-control" name="textura">
+        </div>
+      </div>
+    
+      <div> 
+        <button type="submit" class="btn btn-primary">Enviar</button>
+      </div>
+
+  </form>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+  </body>
+</html>
