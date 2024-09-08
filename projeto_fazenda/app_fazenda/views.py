@@ -1,27 +1,51 @@
 from django.shortcuts import render, redirect
 from .models import Dados
+from .form import DadosForm 
 
-def cadastro(request): 
-    return render(request, 'cadastro/cadastro.html')
-
-def listagem(request):
-    # Pegando os dados dos inputs e salvando apenas se for POST
+# Pagina cadastro
+def cadastro(request):
+    # Se a requisição da página for POST
     if request.method == 'POST':
-        novos_dados = Dados(
-            bloco=request.POST.get('bloco'),
-            cultura=request.POST.get('cultura'),
-            ph=request.POST.get('ph'),
-            umidade=request.POST.get('umidade'),
-            textura=request.POST.get('textura')
-        )
-        novos_dados.save()
+        # Cria o formulário com o ModelForm
+        form = DadosForm(request.POST)
+        # Formulário válido
+        if form.is_valid():
+            form.save()
+            return redirect('dados_fazenda')
+        # Formulário não é válido
+        else:
+            print(form.errors)  # Verifica quais erros estão presentes
+            # Renderiza a página do formulário com os erros
+            return render(request, 'cadastro/cadastro.html', {'form': form})
+    # Se a requisição da página for GET
+    else:
+        form = DadosForm()
+    return render(request, 'cadastro/cadastro.html', {'form': form})
 
-        # Redirecionando após o salvamento para evitar o resubmit do formulário
-        return redirect('listagem')
+# Pagina listagem
+def listagem(request):
+    # Se a requisição da página for POST
+    if request.method == 'POST':
+        form = DadosForm(request.POST)
+        # Formulário válido:
+        if form.is_valid():
+            form.save()  # Salva os dados após validação
+            return redirect('dados_fazenda')
+        # Formulário não é válido:
+        else:
+            print(form.errors)  # Verificar quais erros estão presentes
 
-    # Se for GET, simplesmente exibe os dados sem salvar
+            # Recarrega a página com os erros de validação, se houver
+            return render(request, 'cadastro/cadastro.html', {'form': form})
+    # Se a requisição da página for GET
+    else:
+        form = DadosForm()
+    
+    # Coloca os dados recebidos em um dicionário
     dados = {
-        'dados': Dados.objects.all()
+        'dados': Dados.objects.all(),
+        'form': form
     }
 
+    # Retorna a página listagem, com os dados inseridos com sucesso no banco
     return render(request, 'cadastro/listagem.html', dados)

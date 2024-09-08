@@ -1,3 +1,5 @@
 from django.contrib import admin
+from .models import Dados
 
-# Register your models here.
+# Registro da página de admin
+admin.site.register(Dados)

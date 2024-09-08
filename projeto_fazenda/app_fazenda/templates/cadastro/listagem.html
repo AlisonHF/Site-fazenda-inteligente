@@ -1,36 +1,38 @@
-<!DOCTYPE html>
-<html lang="pt-BR">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Listagem</title>
-</head>
-<body>
+{% extends 'base.html' %} <!-- Trazendo o arquivo base -->
 
-    <div>
-        <table>
+{% block title %}Listagem{% endblock %}
 
-            <tr>
-                <th>ID</th>
-                <th>Bloco</th>
-                <th>PH</th>
-                <th>Umidade</th>
-                <th>Textura</th>
-            </tr>
+{% block content %}
 
-            {% for dado in dados %}
+<h1>Listagem dos dados</h1>
+<div>
+    <!--Tabela com a listagem dos dados-->
+    <table class="table table-striped">
 
-            <tr>    
-                <td>{{ dado.id }}</td>
-                <td>{{ dado.bloco }}</td>
-                <td>{{ dado.ph }}</td>
-                <td>{{ dado.umidade }}</td>
-                <td>{{ dado.textura }}</td>  
-            </tr>
+        <tr>
+            <th>ID</th>
+            <th>Bloco</th>
+            <th>Cultura</th>
+            <th>PH</th>
+            <th>Umidade</th>
+            <th>Textura</th>
+        </tr>
 
-            {% endfor %}
-        </table>
-    </div>
-</body>
-</html>
+        <!--Iteração dentro do banco de dados-->
+        {% for dado in dados %}
+
+        <tr>    
+            <td>{{ dado.id }}</td>
+            <td>{{ dado.bloco }}</td>
+            <td>{{dado.cultura }}</td>
+            <td>{{ dado.ph }}</td>
+            <td>{{ dado.umidade }}</td>
+            <td>{{ dado.textura }}</td>  
+        </tr>
+
+        {% endfor %}
+    </table>
+</div>
+
+{% endblock %}
 

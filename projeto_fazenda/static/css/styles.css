@@ -1,3 +1,5 @@
+/* Estilos aplicados nas páginas HTML */
+
 @import url('https://fonts.googleapis.com/css2?family=Arvo&display=swap');
 
 * {
@@ -18,7 +20,7 @@ body, html {
     height: 60px;
     align-content: center;
     text-align: center;
-}
+} /* Cabeçalho */
 
 a {
     text-decoration: none;
@@ -32,3 +34,9 @@ h1 {
     color: green;
     margin: 20px;
 }
+
+/* Classe de erro do Django */
+.errorlist{
+    font-size: 14px;
+    color:red;
+} 
