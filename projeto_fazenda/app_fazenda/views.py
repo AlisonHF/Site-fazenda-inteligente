@@ -1,4 +1,6 @@
 from django.shortcuts import render, redirect
+from django.urls import reverse_lazy
+from django.views.generic.edit import DeleteView, UpdateView
 from .models import Dados
 from .form import DadosForm 
 
@@ -49,3 +51,18 @@ def listagem(request):
 
     # Retorna a página listagem, com os dados inseridos com sucesso no banco
     return render(request, 'cadastro/listagem.html', dados)
+
+
+# Classe genérica do django para view de delete
+class DadosDeleteView(DeleteView):
+    model = Dados
+    template_name = 'cadastro/confirmar_exclusao.html'
+    success_url = reverse_lazy('dados_fazenda')
+
+
+# Classe genérica do django para view de update
+class DadosUpdateView(UpdateView):
+    model = Dados
+    form_class = DadosForm
+    template_name = 'cadastro/editar_dados.html'
+    success_url = reverse_lazy('dados_fazenda')

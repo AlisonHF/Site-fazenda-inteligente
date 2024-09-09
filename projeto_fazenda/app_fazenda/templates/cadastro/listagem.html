@@ -5,7 +5,7 @@
 {% block content %}
 
 <h1>Listagem dos dados</h1>
-<div>
+<div style="align-items: center;">
     <!--Tabela com a listagem dos dados-->
     <table class="table table-striped">
 
@@ -16,6 +16,7 @@
             <th>PH</th>
             <th>Umidade</th>
             <th>Textura</th>
+            <th style="text-align: center;">Exclusão</th>
         </tr>
 
         <!--Iteração dentro do banco de dados-->
@@ -28,6 +29,10 @@
             <td>{{ dado.ph }}</td>
             <td>{{ dado.umidade }}</td>
             <td>{{ dado.textura }}</td>  
+            <td>
+                <a href="{% url 'editar_dados' dado.pk %}" class="btn btn-warning">Editar</a>
+                <a href="{% url 'excluir_dados' dado.pk %}" class="btn btn-danger">Excluir</a>
+            </td>
         </tr>
 
         {% endfor %}

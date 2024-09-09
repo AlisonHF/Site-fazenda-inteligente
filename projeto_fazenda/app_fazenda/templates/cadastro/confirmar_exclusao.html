@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+  <h2>Tem certeza de que deseja excluir este dado?</h2>
+  <p>Bloco: {{ object.bloco }}</p>
+  <p>Cultura: {{ object.cultura }}</p>
+  <p>PH: {{ object.ph }}</p>
+  <p>Textura: {{ object.textura }}</p>
+
+  <form method="POST">
+    {% csrf_token %}
+    <button type="submit" class="btn btn-danger">Excluir</button>
+    <a href="{% url 'dados_fazenda' %}" class="btn btn-secondary">Cancelar</a>
+  </form>
+
+{% endblock %}
