@@ -9,3 +9,4 @@ class Dados(models.Model):
     ph = models.FloatField(max_length=255)
     umidade = models.FloatField(max_length=255)
     textura = models.TextField(max_length=255)
+    data = models.DateField(auto_now_add=True)

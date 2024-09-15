@@ -1,0 +1,67 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<div class="container-detalhe">
+     
+    <!-- Parte esquerda da página -->
+    <div class="esquerda">
+        <h2>Cultivo</h2>
+        <img class="tomate" src="{% static 'imagens/tomate.jpg' %}">
+        <h2>Tomate</h2>
+    </div>
+
+    <!-- Parte direita da página -->
+    <div class="direita">
+
+        <h2>Recomendações do cultivo</h2>
+
+        <p>O pH ideal do solo para o cultivo de tomates é entre 6,0 e 6,5, mas as plantas podem crescer em pH entre 5,0 e 7,5. 
+            <br>
+            O pH do tomate maduro é normalmente entre 4,0 e 4,5, e quanto maior o pH, mais amargo o fruto será. O sabor do tomate está relacionado com a concentração de ácidos e açúcares, principalmente frutose e ácido cítrico. 
+            <br>
+            Para corrigir a acidez do solo, pode-se utilizar calcário, em um processo chamado calagem. A necessidade de calagem é calculada com base na capacidade de troca catiônica do solo e na saturação por bases desejada, que para o tomateiro deve ser de cerca de 70%. 
+            <br>
+            O solo ideal para o cultivo de tomates deve ser rico em potássio, fósforo, cálcio e magnésio, e deve ser franco-arenoso, de modo a drenar bem.
+        </p>
+
+    </div>
+    
+</div>
+
+<!-- Parte da tabela -->
+<div>
+    <h2> Último registro </h2>
+    <table class="table table-striped" style="border:2px solid black;">
+        <tr>
+            <th>ID</th>
+            <th>Bloco</th>
+            <th>Cultura</th>
+            <th>PH</th>
+            <th>Umidade</th>
+            <th>Textura</th>
+            <th>Data da inclusâo</th>
+        </tr>
+
+        <!-- Verifica se tem algum ultimo registro-->
+        {% if ultimo_registro %}
+        <!-- Caso tenha ele exibe -->
+        <tr>
+            <td>{{ ultimo_registro.id }}</td>
+            <td>{{ ultimo_registro.bloco }}</td>
+            <td>{{ ultimo_registro.cultura }}</td>
+            <td>{{ ultimo_registro.ph }}</td>
+            <td>{{ ultimo_registro.umidade }}</td>
+            <td>{{ ultimo_registro.textura }}</td>
+            <td>{{ ultimo_registro.data }}</td>
+        </tr>
+
+        <!-- Caso não tenha -->
+        {% else %}
+        <tr>
+            <td colspan="8">Nenhum registro encontrado para "Tomate".</td>
+        </tr>
+        {% endif %}
+        
+    </table>
+</div>
+{% endblock %}

@@ -1,0 +1,20 @@
+/* Estilos na pasta detalhes_registros */
+.container-detalhe {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+}
+
+.esquerda {
+    text-align: center;
+}
+
+.direita {
+    text-align: center;
+}
+
+.tomate {
+    height: 250px;
+    margin: 10px;
+    border: 1px solid black;
+}

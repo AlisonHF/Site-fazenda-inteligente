@@ -16,7 +16,8 @@
             <th>PH</th>
             <th>Umidade</th>
             <th>Textura</th>
-            <th style="text-align: center;">Exclusão</th>
+            <th>Data da inclusâo</th>
+            <th>Edição / Exclusão</th>
         </tr>
 
         <!--Iteração dentro do banco de dados-->
@@ -29,6 +30,7 @@
             <td>{{ dado.ph }}</td>
             <td>{{ dado.umidade }}</td>
             <td>{{ dado.textura }}</td>  
+            <td>{{ dado.data }}</td>
             <td>
                 <a href="{% url 'editar_dados' dado.pk %}" class="btn btn-warning">Editar</a>
                 <a href="{% url 'excluir_dados' dado.pk %}" class="btn btn-danger">Excluir</a>

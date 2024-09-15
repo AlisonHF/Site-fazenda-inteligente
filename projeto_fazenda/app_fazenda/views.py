@@ -52,6 +52,20 @@ def listagem(request):
     # Retorna a página listagem, com os dados inseridos com sucesso no banco
     return render(request, 'cadastro/listagem.html', dados)
 
+# Página listagem
+def detalhe(request):
+
+    # Verifica se existe um último registro
+    try:
+        ultimo_registro = Dados.objects.filter(cultura='Tomate').latest('data')
+    except Dados.DoesNotExist:
+        ultimo_registro = None
+
+    # Salva o contexto em um dict
+    context = {
+        'ultimo_registro': ultimo_registro}
+    return render(request, 'detalhes_registro/detalhe_registro.html', context )
+
 
 # Classe genérica do django para view de delete
 class DadosDeleteView(DeleteView):
@@ -66,3 +80,4 @@ class DadosUpdateView(UpdateView):
     form_class = DadosForm
     template_name = 'cadastro/editar_dados.html'
     success_url = reverse_lazy('dados_fazenda')
+
