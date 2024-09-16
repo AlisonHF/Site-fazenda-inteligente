@@ -1,0 +1,65 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+<div class="container-detalhe">
+
+    {% for plantio in plantios %}
+    <!-- Parte esquerda da página -->
+    <div class="esquerda">
+        <h2>Cultivo</h2>
+        <img class="imagem" src="{% static 'imagens/sem_imagem.jpg' %}">
+        <h2>{{plantio.nome}}</h2>
+    </div>
+    <!-- Parte direita da página -->
+    <div class="direita">
+        <h2>Recomendações do cultivo</h2>
+        <p>A umidade recomendada é de {{plantio.umidade_recomendado}}%</p>
+        <p>O pH recomendado é de {{plantio.ph_recomendado}}</p>
+        <br>
+        <p>{{plantio.texto_recomendacao}}</p>
+
+    </div>
+
+    {% endfor %}
+
+</div>
+    <!--Tabela abaixo !-->
+    <div>
+        <h2> Último registro </h2>
+        <table class="table table-striped" style="border:2px solid black;">
+            <tr>
+                <th>ID</th>
+                <th>Bloco</th>
+                <th>Cultura</th>
+                <th>PH</th>
+                <th>Umidade</th>
+                <th>Textura</th>
+                <th>Data da inclusâo</th>
+            </tr>
+    
+            <!-- Verifica se tem algum ultimo registro-->
+            {% if ultimo_registro %}
+            <!-- Caso tenha ele exibe -->
+            <tr>
+                <td>{{ ultimo_registro.id }}</td>
+                <td>{{ ultimo_registro.bloco }}</td>
+                <td>{{ ultimo_registro.cultura }}</td>
+                <td>{{ ultimo_registro.ph }}</td>
+                <td>{{ ultimo_registro.umidade }}</td>
+                <td>{{ ultimo_registro.textura }}</td>
+                <td>{{ ultimo_registro.data }}</td>
+            </tr>
+    
+            <!-- Caso não tenha -->
+            {% else %}
+            <h2> Exibindo tela sem registro </h2>
+            <tr>
+                <td colspan="8">Nenhum registro encontrado ou selecionado.</td>
+            </tr>
+            {% endif %}
+            
+        </table>
+    </div>
+
+{% endblock %}

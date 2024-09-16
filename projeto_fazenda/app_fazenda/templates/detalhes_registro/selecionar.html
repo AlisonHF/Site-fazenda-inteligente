@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h2 style="text-align: center;">Selecione o cultivo para abrir os detalhes</h2>
+
+    <!-- Seleção do usuario -->
+    <form action="{% url 'detalhe' %}" method="POST">
+        {% csrf_token %}
+        <select class="form-select" aria-label="Default select example" name="cultivo">
+            <option selected>Selecione o cultivo</option>
+            <option value="Tomate">Tomate</option>
+            <option value="Alface">Alface</option>
+            <option value="Beterraba">Beterraba</option>
+        </select>
+
+        <br>
+        <button type="submit" class="btn btn-success">Selecionar</button>
+
+    </form>
+
+{% endblock %}

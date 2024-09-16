@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from django.urls import reverse_lazy
 from django.views.generic.edit import DeleteView, UpdateView
-from .models import Dados
+from .models import Dados, Plantio
 from .form import DadosForm 
 
 # Pagina cadastro
@@ -52,20 +52,6 @@ def listagem(request):
     # Retorna a página listagem, com os dados inseridos com sucesso no banco
     return render(request, 'cadastro/listagem.html', dados)
 
-# Página listagem
-def detalhe(request):
-
-    # Verifica se existe um último registro
-    try:
-        ultimo_registro = Dados.objects.filter(cultura='Tomate').latest('data')
-    except Dados.DoesNotExist:
-        ultimo_registro = None
-
-    # Salva o contexto em um dict
-    context = {
-        'ultimo_registro': ultimo_registro}
-    return render(request, 'detalhes_registro/detalhe_registro.html', context )
-
 
 # Classe genérica do django para view de delete
 class DadosDeleteView(DeleteView):
@@ -81,3 +67,26 @@ class DadosUpdateView(UpdateView):
     template_name = 'cadastro/editar_dados.html'
     success_url = reverse_lazy('dados_fazenda')
 
+
+## TESTE ##
+
+def selecionar(request):
+    return render(request, 'detalhes_registro/selecionar.html')
+
+def detalhe(request):
+    if request.method == 'POST':
+        cultivo = request.POST.get('cultivo')
+    
+        try:
+            ultimo_registro = Dados.objects.filter(cultura=cultivo).latest('data')
+        except Dados.DoesNotExist:
+            ultimo_registro = None
+
+        dados = {
+        'plantios': Plantio.objects.filter(nome = cultivo),
+        'ultimo_registro': ultimo_registro
+    }
+        return render(request, 'detalhes_registro/detalhe.html', dados)
+
+    else:
+        return render(request, 'detalhes_registro/detalhe.html')
