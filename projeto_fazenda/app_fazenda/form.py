@@ -1,16 +1,24 @@
 from django import forms
 from .models import Dados
 
-class DadosForm(forms.ModelForm):
 
+
+# Classe responsável pela criação do formulário
+class DadosForm(forms.ModelForm):
     # Classe para especificar o modelo do banco e os campos
     class Meta:
+        ESCOLHA_CULTIVOS = [
+        (None, 'Escolha uma opção'),
+        ('Tomate', 'Tomate'),
+        ('Alface', 'Alface'),
+        ('Beterraba', 'Beterraba')
+    ]
         model = Dados
-        fields = ['bloco', 'cultura', 'ph', 'umidade', 'textura']
+        fields = ['bloco', 'cultivo', 'ph', 'umidade', 'textura']
         # Colocando estilos nos campos pré-definidos pelo django
         widgets = {
             'bloco': forms.NumberInput(attrs={'class': 'form-control'}),
-            'cultura': forms.TextInput(attrs={'class': 'form-control'}),
+            'cultivo': forms.Select(attrs={'class': 'form-select'}, choices=ESCOLHA_CULTIVOS),
             'ph': forms.NumberInput(attrs={'class': 'form-control'}),
             'umidade': forms.NumberInput(attrs={'class': 'form-control'}),
             'textura': forms.TextInput(attrs={'class': 'form-control'})

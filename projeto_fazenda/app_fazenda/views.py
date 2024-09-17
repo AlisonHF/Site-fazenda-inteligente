@@ -1,10 +1,28 @@
 from django.shortcuts import render, redirect
 from django.urls import reverse_lazy
 from django.views.generic.edit import DeleteView, UpdateView
-from .models import Dados, Plantio
+from .models import Dados, Cultivo
 from .form import DadosForm 
 
-# Pagina cadastro
+
+
+# Classe genérica do django para view de delete
+class DadosDeleteView(DeleteView):
+    model = Dados
+    template_name = 'cadastro/confirmar_exclusao.html'
+    success_url = reverse_lazy('dados_fazenda')
+
+
+# Classe genérica do django para view de update
+class DadosUpdateView(UpdateView):
+    model = Dados
+    form_class = DadosForm
+    template_name = 'cadastro/editar_dados.html'
+    success_url = reverse_lazy('dados_fazenda')
+
+
+
+# View cadastro
 def cadastro(request):
     # Se a requisição da página for POST
     if request.method == 'POST':
@@ -24,7 +42,8 @@ def cadastro(request):
         form = DadosForm()
     return render(request, 'cadastro/cadastro.html', {'form': form})
 
-# Pagina listagem
+
+# View listagem
 def listagem(request):
     # Se a requisição da página for POST
     if request.method == 'POST':
@@ -53,40 +72,31 @@ def listagem(request):
     return render(request, 'cadastro/listagem.html', dados)
 
 
-# Classe genérica do django para view de delete
-class DadosDeleteView(DeleteView):
-    model = Dados
-    template_name = 'cadastro/confirmar_exclusao.html'
-    success_url = reverse_lazy('dados_fazenda')
-
-
-# Classe genérica do django para view de update
-class DadosUpdateView(UpdateView):
-    model = Dados
-    form_class = DadosForm
-    template_name = 'cadastro/editar_dados.html'
-    success_url = reverse_lazy('dados_fazenda')
-
-
-## TESTE ##
-
+# View para a tela de seleção do cultivo para detalhes
 def selecionar(request):
     return render(request, 'detalhes_registro/selecionar.html')
 
+
+# View para tela de detalhes do cultivo
 def detalhe(request):
     if request.method == 'POST':
         cultivo = request.POST.get('cultivo')
     
+        # Procura o ultimo registro conforme o cultivo que o usuario passou
         try:
-            ultimo_registro = Dados.objects.filter(cultura=cultivo).latest('data')
+            ultimo_registro = Dados.objects.filter(cultivo=cultivo).latest('data')
         except Dados.DoesNotExist:
             ultimo_registro = None
 
+        # Coloca os dados do context em um dict para renderizar as paginas com
+        # as informações do dict
         dados = {
-        'plantios': Plantio.objects.filter(nome = cultivo),
+        'cultivos': Cultivo.objects.filter(nome = cultivo),
         'ultimo_registro': ultimo_registro
     }
+        # Caso houver ultimo registro
         return render(request, 'detalhes_registro/detalhe.html', dados)
 
+    # Caso não houver
     else:
         return render(request, 'detalhes_registro/detalhe.html')

@@ -1,8 +1,9 @@
 {% extends 'base.html' %} <!-- Trazendo o arquivo base -->
 
-{% block title %}Cadastrar{% endblock %}
 
+{% block title %}Cadastrar{% endblock %}
 {% block content %}
+
 <form method="POST" action="{% url 'dados_fazenda' %}">
     {% csrf_token %}
     <p>{{ form.non_field_errors }}</p>  <!-- Erros gerais -->
@@ -16,10 +17,10 @@
     </div>
 
     <div class="mb-3 row">
-        <label class="col-sm-2 col-form-label">Cultura: </label>
+        <label class="col-sm-2 col-form-label">Cultivo: </label>
         <div class="col-sm-10">
-            {{ form.cultura }}
-            <p>{{ form.cultura.errors }}</p>
+            {{ form.cultivo }}
+            <p>{{ form.cultivo.errors }}</p>
         </div>
     </div>
 

@@ -1,10 +1,11 @@
 {% extends 'base.html' %}
 
+{% block title %}Confirmar exclusão{% endblock %}
 {% block content %}
 
   <h2>Tem certeza de que deseja excluir este dado?</h2>
   <p>Bloco: {{ object.bloco }}</p>
-  <p>Cultura: {{ object.cultura }}</p>
+  <p>cultivo: {{ object.cultivo }}</p>
   <p>PH: {{ object.ph }}</p>
   <p>Textura: {{ object.textura }}</p>
 

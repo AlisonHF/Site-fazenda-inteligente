@@ -1,23 +1,24 @@
 {% extends 'base.html' %}
 {% load static %}
+{% block title %}Detalhes do cultivo{% endblock %}
 {% block content %}
 
 <div class="container-detalhe">
 
-    {% for plantio in plantios %}
+    {% for cultivo in cultivos %}
     <!-- Parte esquerda da página -->
     <div class="esquerda">
-        <h2>Cultivo</h2>
-        <img class="imagem" src="{% static 'imagens/sem_imagem.jpg' %}">
-        <h2>{{plantio.nome}}</h2>
+        <h2>cultivo</h2>
+        <img class="imagem" src="{% static cultivo.imagem %}">
+        <h2>{{cultivo.nome}}</h2>
     </div>
     <!-- Parte direita da página -->
     <div class="direita">
         <h2>Recomendações do cultivo</h2>
-        <p>A umidade recomendada é de {{plantio.umidade_recomendado}}%</p>
-        <p>O pH recomendado é de {{plantio.ph_recomendado}}</p>
+        <p>A umidade recomendada é de {{cultivo.umidade_recomendado}}%</p>
+        <p>O pH recomendado é de {{cultivo.ph_recomendado}}</p>
         <br>
-        <p>{{plantio.texto_recomendacao}}</p>
+        <p>{{cultivo.texto_recomendacao}}</p>
 
     </div>
 
@@ -31,7 +32,7 @@
             <tr>
                 <th>ID</th>
                 <th>Bloco</th>
-                <th>Cultura</th>
+                <th>Cultivo</th>
                 <th>PH</th>
                 <th>Umidade</th>
                 <th>Textura</th>
@@ -44,7 +45,7 @@
             <tr>
                 <td>{{ ultimo_registro.id }}</td>
                 <td>{{ ultimo_registro.bloco }}</td>
-                <td>{{ ultimo_registro.cultura }}</td>
+                <td>{{ ultimo_registro.cultivo }}</td>
                 <td>{{ ultimo_registro.ph }}</td>
                 <td>{{ ultimo_registro.umidade }}</td>
                 <td>{{ ultimo_registro.textura }}</td>
