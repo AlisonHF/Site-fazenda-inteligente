@@ -13,6 +13,13 @@ class DadosForm(forms.ModelForm):
         ('Alface', 'Alface'),
         ('Beterraba', 'Beterraba')
     ]
+        
+        ESCOLHA_TEXTURA = [
+            (None, 'Escolha uma opção'),
+            ('Arenosa', 'Arenosa'),
+            ('Argilosa', 'Argilosa'),
+            ('Siltosa', 'Siltosa')
+        ]
         model = Dados
         fields = ['bloco', 'cultivo', 'ph', 'umidade', 'textura']
         # Colocando estilos nos campos pré-definidos pelo django
@@ -21,7 +28,7 @@ class DadosForm(forms.ModelForm):
             'cultivo': forms.Select(attrs={'class': 'form-select'}, choices=ESCOLHA_CULTIVOS),
             'ph': forms.NumberInput(attrs={'class': 'form-control'}),
             'umidade': forms.NumberInput(attrs={'class': 'form-control'}),
-            'textura': forms.TextInput(attrs={'class': 'form-control'})
+            'textura': forms.Select(attrs={'class': 'form-select'}, choices=ESCOLHA_TEXTURA)
         }
         
     # Validação específica do campo ph
