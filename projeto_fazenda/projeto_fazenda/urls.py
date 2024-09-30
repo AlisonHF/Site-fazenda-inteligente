@@ -18,5 +18,5 @@ urlpatterns = [
     # Caminhos parte detalhes registro
     path('selecionar/', views.selecionar, name='selecionar'),
     path('detalhe/', views.detalhe, name='detalhe'),
-
+    path('home/', views.home, name='home' )
 ]

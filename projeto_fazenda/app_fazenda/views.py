@@ -100,3 +100,6 @@ def detalhe(request):
     # Caso não houver
     else:
         return render(request, 'detalhes_registro/detalhe.html')
+
+def home(request):
+    return render(request, 'inicio/home.html')
