@@ -103,3 +103,17 @@ def detalhe(request):
 
 def home(request):
     return render(request, 'inicio/home.html')
+
+# Parte cultivos
+
+def cadastrar_cultivo(request):
+    return render(request, 'cultivo/cadastrar.html')
+
+def listar_cultivos(request):
+    # Coloca os dados recebidos em um dicionário
+    dados = {
+        'dados': Cultivo.objects.all(),
+    }
+
+    # Retorna a página listagem, com os dados inseridos com sucesso no banco
+    return render(request, 'cultivo/listar_cultivos.html', dados)

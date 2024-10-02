@@ -18,5 +18,10 @@ urlpatterns = [
     # Caminhos parte detalhes registro
     path('selecionar/', views.selecionar, name='selecionar'),
     path('detalhe/', views.detalhe, name='detalhe'),
-    path('home/', views.home, name='home' )
+    path('home/', views.home, name='home' ),
+
+    # Caminhos cadastrar cultivo
+    path('cadastrar_cultivo/', views.cadastrar_cultivo, name='cadastrar_cultivo'),
+    path('listagem_cultivos/', views.listar_cultivos, name='listar_cultivos'),
+
 ]
