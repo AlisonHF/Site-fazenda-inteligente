@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 from django.urls import reverse_lazy
 from django.views.generic.edit import DeleteView, UpdateView
 from .models import Dados, Cultivo
-from .form import DadosForm 
+from .form import DadosForm, CultivoForm
 
 
 
@@ -107,13 +107,29 @@ def home(request):
 # Parte cultivos
 
 def cadastrar_cultivo(request):
-    return render(request, 'cultivo/cadastrar.html')
+    # Se a requisição da página for POST
+    if request.method == 'POST':
+        form = CultivoForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('listar_cultivos')  # Certifique-se de que o nome da URL está correto
+        else:
+            print(form.errors)  # Verifica quais erros estão presentes
+            return render(request, 'cultivo/cadastrar.html', {'form': form})
+
+    # Se a requisição da página for GET
+    else:
+        form = CultivoForm()
+    return render(request, 'cultivo/cadastrar.html', {'form': form})
 
 def listar_cultivos(request):
-    # Coloca os dados recebidos em um dicionário
+    # Obtém todos os cultivos cadastrados
+    cultivos = Cultivo.objects.all()
+
+    # Cria um dicionário com os cultivos para passar ao template
     dados = {
-        'dados': Cultivo.objects.all(),
+        'dados': cultivos
     }
 
-    # Retorna a página listagem, com os dados inseridos com sucesso no banco
+    # Retorna a página de listagem, com os cultivos do banco de dados
     return render(request, 'cultivo/listar_cultivos.html', dados)

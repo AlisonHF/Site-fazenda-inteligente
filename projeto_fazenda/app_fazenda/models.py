@@ -14,8 +14,8 @@ class Dados(models.Model):
 
 class Cultivo(models.Model):
     id = models.AutoField(primary_key=True)
-    nome = models.TextField(max_length=255)
+    nome = models.CharField(max_length=255)
     umidade_recomendado = models.FloatField()
     ph_recomendado = models.FloatField()
-    texto_recomendacao = models.TextField(max_length=1200)
+    texto_recomendacao = models.TextField(max_length=1200, null=True)
     imagem = models.CharField(max_length=1000, blank=True, null=True)

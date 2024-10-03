@@ -1,5 +1,5 @@
 from django import forms
-from .models import Dados
+from .models import Dados, Cultivo
 
 
 
@@ -60,3 +60,17 @@ class DadosForm(forms.ModelForm):
             raise forms.ValidationError("Umidade muito baixa com pH alto, verifique os valores")
 
         return cleaned_data
+
+
+
+class CultivoForm(forms.ModelForm):
+    class Meta:
+        model = Cultivo
+        fields = ['nome', 'umidade_recomendado', 'ph_recomendado', 'texto_recomendacao']
+
+        widgets = {
+            'nome': forms.TextInput(attrs={'class': 'form-control'}),
+            'umidade_recomendado': forms.NumberInput(attrs={'class': 'form-control'}),
+            'ph_recomendado': forms.NumberInput(attrs={'class': 'form-control'}),
+            'texto_recomendacao': forms.Textarea(attrs={'class': 'form-control'}),
+        }
