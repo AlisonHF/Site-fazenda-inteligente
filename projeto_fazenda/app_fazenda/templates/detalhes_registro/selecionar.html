@@ -1,22 +1,20 @@
 {% extends 'base.html' %}
-{% block title %}Selecione o cultivo{% endblock %}
+{% load static %}
+{% block title %}Selecionar Cultivo{% endblock %}
 {% block content %}
-    <h2 style="text-align: center;">Selecione o cultivo para abrir os detalhes</h2>
 
-    <!-- Seleção do usuario -->
-    <form action="{% url 'detalhe' %}" method="POST">
+<div class="container-selecionar">
+    <h2>Selecione um Cultivo</h2>
+    <form method="post" action="{% url 'detalhe' %}">
         {% csrf_token %}
-        <select class="form-select" aria-label="Default select example" name="cultivo">
-            <option selected>Selecione o cultivo</option>
+        <label for="cultivo">Cultivo:</label>
+        <select name="cultivo" id="cultivo">
             {% for cultivo in cultivos %}
-                <option value="{{ cultivo.id }}">{{ cultivo.nome }}</option> <!-- A propriedade pode ser o nome do cultivo -->
-            {% empty %}
-                <option disabled>Você não tem cultivos cadastrados.</option>
+                <option value="{{ cultivo.nome }}">{{ cultivo.nome }}</option>
             {% endfor %}
         </select>
-
-        <br>
-        <button type="submit" class="btn btn-success">Selecionar</button>
+        <button type="submit">Buscar</button>
     </form>
+</div>
 
 {% endblock %}

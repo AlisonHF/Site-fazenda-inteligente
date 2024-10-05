@@ -26,7 +26,6 @@ class Cultivo(models.Model):
     umidade_recomendado = models.FloatField()
     ph_recomendado = models.FloatField()
     texto_recomendacao = models.TextField(max_length=1200, null=True)
-    imagem = models.CharField(max_length=1000, blank=True, null=True)
     # Se um usuário for apagado, apagar todos os dados do usuário também
     usuario = models.ForeignKey(get_user_model(), on_delete=models.CASCADE)
 

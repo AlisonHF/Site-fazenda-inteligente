@@ -96,27 +96,26 @@ def selecionar(request):
 
 
 # View para tela de detalhes do cultivo
+
 @login_required
 def detalhe(request):
     if request.method == 'POST':
-        cultivo = request.POST.get('cultivo')
-    
-        # Procura o ultimo registro conforme o cultivo que o usuario passou
-        try:
-            ultimo_registro = Dados.objects.filter(cultivo=cultivo).latest('data')
-        except Dados.DoesNotExist:
-            ultimo_registro = None
+        cultivo_nome = request.POST.get('cultivo')
+        print(f"Cultivo selecionado: {cultivo_nome}")  # Verifique o nome do cultivo capturado
+        
+        # Filtra os cultivos pelo nome e pelo usuário logado
+        cultivos = Cultivo.objects.filter(nome=cultivo_nome, usuario=request.user)
+        print(f"Cultivos encontrados: {cultivos}")  # Verifique os cultivos retornados
 
-        # Coloca os dados do context em um dict para renderizar as paginas com
-        # as informações do dict
+        # Coloca os dados do contexto em um dict para renderizar as páginas com as informações do dict
         dados = {
-        'cultivos': Cultivo.objects.filter(nome = cultivo),
-        'ultimo_registro': ultimo_registro
-    }
-        # Caso houver ultimo registro
+            'cultivos': cultivos,
+        }
+
+        # Renderiza a página com os dados dos cultivos
         return render(request, 'detalhes_registro/detalhe.html', dados)
 
-    # Caso não houver
+    # Caso não houver POST
     else:
         return render(request, 'detalhes_registro/detalhe.html')
     

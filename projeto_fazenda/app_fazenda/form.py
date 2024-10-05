@@ -31,7 +31,7 @@ class DadosForm(forms.ModelForm):
         user = kwargs.pop('user', None)
         super(DadosForm, self).__init__(*args, **kwargs)
         if user:
-            self.fields['cultivo'].queryset = Cultivo.objects.filter(usuario=user)
+            self.fields['cultivo'].queryset = Cultivo.objects.filter(usuario=user) # type: ignore
 
     def clean_ph(self):
         ph = self.cleaned_data.get('ph')
