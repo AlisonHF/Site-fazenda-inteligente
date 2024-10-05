@@ -7,20 +7,31 @@
 <table class="table table-striped table-bordered">
 
     <tr>
+        <td>ID</td>
         <td>Nome</td>
         <td>Umidade recomendada</td>
         <td>pH recomendado</td>
         <td style="text-align: center;">Texto de recomendação</td>
+        <td></td>
     </tr>
     {% for dado in dados %}
     <tr>    
+        <td>{{ dado.pk }}</td>
         <td>{{ dado.nome }}</td>
-        <td>{{ dado.umidade }}</td>
+        <td>{{ dado.umidade_recomendado }}</td>
         <td>{{dado.ph_recomendado }}</td>
         <td>{{ dado.texto_recomendacao }}</td>
+        <td>
+            <a href="{% url 'editar_cultivo' dado.pk %}" class="btn btn-warning">Editar</a>
+            <a href="{% url 'excluir_cultivo' dado.pk %}" class="btn btn-danger">Excluir</a>
+        </td>
     </tr>
     {% endfor %}
     
 </table>
+
+{% for cultivo in dados %}
+    <p>ID: {{ cultivo.pk }} - Nome: {{ cultivo.nome }}</p>
+{% endfor %}
 
 {% endblock %}

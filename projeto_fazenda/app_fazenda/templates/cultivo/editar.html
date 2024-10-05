@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+{% block title %}Editar dados{% endblock %}
+{% block content %}
+
+<!-- Traz o formulário para edição -->
+<h1>Editar Dados</h1>
+<form method="POST">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit" class="btn btn-primary">Salvar alterações</button>
+</form>
+
+{% endblock %}

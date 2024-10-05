@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+{% block title %}Confirmar exclusão{% endblock %}
+{% block content %}
+
+  <h2>Tem certeza de que deseja excluir este dado?</h2>
+
+  <p>ID: {{ object.pk }}</p>
+  <p>Nome: {{ object.nome }}</p>
+  <p>Umidade recomendada: {{ object.umidade_recomendado }}</p>
+  <p>pH recomendada: {{ object.ph_recomendado }}</p>
+  <p>Texto de recomendação: {{ object.texto_recomendacao }}</p>
+
+  <form method="POST">
+      {% csrf_token %}
+      <button type="submit" class="btn btn-danger">Excluir</button>
+      <a href="{% url 'listar_cultivos' %}" class="btn btn-secondary">Cancelar</a>
+  </form>
+
+{% endblock %}

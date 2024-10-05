@@ -13,6 +13,7 @@ class DadosDeleteView(DeleteView):
     success_url = reverse_lazy('dados_fazenda')
 
 
+
 # Classe genérica do django para view de update
 class DadosUpdateView(UpdateView):
     model = Dados
@@ -20,6 +21,19 @@ class DadosUpdateView(UpdateView):
     template_name = 'cadastro/editar_dados.html'
     success_url = reverse_lazy('dados_fazenda')
 
+
+
+class CultivoDeleteView(DeleteView):
+    model = Cultivo
+    template_name = 'cultivo/excluir.html'
+    success_url = reverse_lazy('listar_cultivos')
+
+
+class CultivoUpdateView(UpdateView):
+    model = Cultivo
+    form_class = CultivoForm
+    template_name = 'cultivo/editar.html'
+    success_url = reverse_lazy('listar_cultivos')
 
 
 # View cadastro

@@ -23,5 +23,6 @@ urlpatterns = [
     # Caminhos cadastrar cultivo
     path('cadastrar_cultivo/', views.cadastrar_cultivo, name='cadastrar_cultivo'),
     path('listagem_cultivos/', views.listar_cultivos, name='listar_cultivos'),
-
+    path('editar_cultivo/<int:pk>/', views.CultivoUpdateView.as_view(), name='editar_cultivo'),
+    path('excluir_cultivo/<int:pk>/', views.CultivoDeleteView.as_view(), name='excluir_cultivo'),
 ]
