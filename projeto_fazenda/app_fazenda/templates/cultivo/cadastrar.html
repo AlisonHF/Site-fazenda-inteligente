@@ -17,6 +17,14 @@
     </div>
 
     <div class="mb-3 row">
+        <label class="col-sm-2 col-form-label">pH recomendado: </label>
+        <div class="col-sm-10">
+            {{ form.ph_recomendado }}
+            <p>{{ form.ph_recomendado.errors }}</p>
+        </div>
+    </div>
+
+    <div class="mb-3 row">
         <label class="col-sm-2 col-form-label">Umidade recomendada: </label>
         <div class="col-sm-10">
             {{ form.umidade_recomendado }}
@@ -24,13 +32,7 @@
         </div>
     </div>
 
-    <div class="mb-3 row">
-        <label class="col-sm-2 col-form-label">pH recomendado: </label>
-        <div class="col-sm-10">
-            {{ form.ph_recomendado }}
-            <p>{{ form.ph_recomendado.errors }}</p>
-        </div>
-    </div>
+    
 
     <div class="mb-3 row">
         <label class="col-sm-2 col-form-label">Texto recomendado: </label>

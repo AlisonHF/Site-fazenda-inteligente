@@ -73,27 +73,27 @@ def listagem(request):
         form = DadosForm(request.POST)
         # Formulário válido:
         if form.is_valid():
-            form.save()  # Salva os dados após validação
+            dados_instance = form.save(commit=False)  # Não salva ainda
+            dados_instance.usuario = request.user  # Define o usuário antes de salvar
+            dados_instance.save()  # Agora salva
             return redirect('dados_fazenda')
         # Formulário não é válido:
         else:
             print(form.errors)  # Verificar quais erros estão presentes
-
-            # Recarrega a página com os erros de validação, se houver
             return render(request, 'cadastro/cadastro.html', {'form': form})
+
     # Se a requisição da página for GET
     else:
         form = DadosForm()
     
     # Coloca os dados recebidos em um dicionário
     dados = {
-        'dados': Dados.objects.all(),
+        'dados': Dados.objects.filter(usuario=request.user),  # Filtra pelos dados do usuário
         'form': form
     }
 
     # Retorna a página listagem, com os dados inseridos com sucesso no banco
     return render(request, 'cadastro/listagem.html', dados)
-
 
 # View para a tela de seleção do cultivo para detalhes
 @login_required
@@ -133,25 +133,22 @@ def home(request):
 
 @login_required
 def cadastrar_cultivo(request):
-    # Se a requisição da página for POST
     if request.method == 'POST':
         form = CultivoForm(request.POST)
         if form.is_valid():
-            form.save()
-            return redirect('listar_cultivos')  # Certifique-se de que o nome da URL está correto
-        else:
-            print(form.errors)  # Verifica quais erros estão presentes
-            return render(request, 'cultivo/cadastrar.html', {'form': form})
-
-    # Se a requisição da página for GET
+            cultivo_instance = form.save(commit=False)  # Não salva ainda
+            cultivo_instance.usuario = request.user  # Define o usuário antes de salvar
+            cultivo_instance.save()  # Agora salva
+            return redirect('listar_cultivos')
     else:
         form = CultivoForm()
+
     return render(request, 'cultivo/cadastrar.html', {'form': form})
 
 @login_required
 def listar_cultivos(request):
-    # Obtém todos os cultivos cadastrados
-    cultivos = Cultivo.objects.all()
+    # Obtém todos os cultivos cadastrados para o usuário logado
+    cultivos = Cultivo.objects.filter(usuario=request.user)  # Filtra pelos cultivos do usuário
 
     # Cria um dicionário com os cultivos para passar ao template
     dados = {
