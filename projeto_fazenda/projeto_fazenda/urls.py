@@ -1,6 +1,6 @@
 from django.contrib import admin
 from app_fazenda import views
-from django.urls import path
+from django.urls import path, include
 
 
 
@@ -25,4 +25,7 @@ urlpatterns = [
     path('listagem_cultivos/', views.listar_cultivos, name='listar_cultivos'),
     path('editar_cultivo/<int:pk>/', views.CultivoUpdateView.as_view(), name='editar_cultivo'),
     path('excluir_cultivo/<int:pk>/', views.CultivoDeleteView.as_view(), name='excluir_cultivo'),
+
+    # Registro usuário
+    path('accounts/', include('django.contrib.auth.urls')),
 ]

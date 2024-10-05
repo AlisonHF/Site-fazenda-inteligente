@@ -16,14 +16,22 @@
 
     <!-- Cabeçalho -->
     <header>
-        <div class="menu">
-            <a  href="{% url 'home' %}">HOME</a>
+      <div class="menu">
+        {% if user.is_authenticated %}
+            <a href="{% url 'home' %}">HOME</a>
             <a href="{% url 'cadastro' %}">CADASTRO</a>
             <a href="{% url 'dados_fazenda' %}">LISTAGEM</a>
             <a href="{% url 'selecionar' %}">DETALHES</a>
             <a href="{% url 'cadastrar_cultivo' %}">CULTIVO</a>
-
-        </div>
+    
+            <form action="{% url 'logout' %}" method="post" style="display: inline;">
+                {% csrf_token %}
+                <button type="submit" class="btn btn-danger">Sair</button>
+            </form>
+        {% else %}
+            <a href="/accounts/login">Entrar</a>
+        {% endif %}
+    </div>
     </header>
 
     <div class="container mt-4">

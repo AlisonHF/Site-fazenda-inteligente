@@ -3,14 +3,16 @@ from django.urls import reverse_lazy
 from django.views.generic.edit import DeleteView, UpdateView
 from .models import Dados, Cultivo
 from .form import DadosForm, CultivoForm
-
+from django.contrib.auth.decorators import login_required
 
 
 # Classe genérica do django para view de delete
+
 class DadosDeleteView(DeleteView):
     model = Dados
     template_name = 'cadastro/confirmar_exclusao.html'
     success_url = reverse_lazy('dados_fazenda')
+
 
 
 
@@ -23,10 +25,13 @@ class DadosUpdateView(UpdateView):
 
 
 
+
 class CultivoDeleteView(DeleteView):
     model = Cultivo
     template_name = 'cultivo/excluir.html'
     success_url = reverse_lazy('listar_cultivos')
+
+
 
 
 class CultivoUpdateView(UpdateView):
@@ -36,7 +41,10 @@ class CultivoUpdateView(UpdateView):
     success_url = reverse_lazy('listar_cultivos')
 
 
+
+
 # View cadastro
+@login_required
 def cadastro(request):
     # Se a requisição da página for POST
     if request.method == 'POST':
@@ -58,6 +66,7 @@ def cadastro(request):
 
 
 # View listagem
+@login_required
 def listagem(request):
     # Se a requisição da página for POST
     if request.method == 'POST':
@@ -87,11 +96,13 @@ def listagem(request):
 
 
 # View para a tela de seleção do cultivo para detalhes
+@login_required
 def selecionar(request):
     return render(request, 'detalhes_registro/selecionar.html')
 
 
 # View para tela de detalhes do cultivo
+@login_required
 def detalhe(request):
     if request.method == 'POST':
         cultivo = request.POST.get('cultivo')
@@ -114,12 +125,13 @@ def detalhe(request):
     # Caso não houver
     else:
         return render(request, 'detalhes_registro/detalhe.html')
-
+@login_required
 def home(request):
     return render(request, 'inicio/home.html')
 
 # Parte cultivos
 
+@login_required
 def cadastrar_cultivo(request):
     # Se a requisição da página for POST
     if request.method == 'POST':
@@ -136,6 +148,7 @@ def cadastrar_cultivo(request):
         form = CultivoForm()
     return render(request, 'cultivo/cadastrar.html', {'form': form})
 
+@login_required
 def listar_cultivos(request):
     # Obtém todos os cultivos cadastrados
     cultivos = Cultivo.objects.all()
