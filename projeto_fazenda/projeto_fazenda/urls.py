@@ -7,18 +7,18 @@ from django.urls import path, include
 # Lista responsável por registrar os caminhos do nosso site
 urlpatterns = [
     # Rota, view responsável, nome de referência
-    path('home/', views.home, name='home' ),
-    # Caminhos parte cadastro
+    path('', views.home, name='home' ),
 
+    # Caminhos parte cadastro
     path('admin/', admin.site.urls),
-    path('', views.cadastro, name='cadastro'),
-    path('listagemdados/', views.listagem, name='dados_fazenda'),
-    path('excluir/<int:pk>/', views.DadosDeleteView.as_view(), name='excluir_dados'),
-    path('editar/<int:pk>/', views.DadosUpdateView.as_view(), name='editar_dados'),
+    path('cadastrar_dados', views.cadastro, name='cadastro_dados'),
+    path('listagem_dados/', views.listagem, name='listagem_dados'),
+    path('excluir_dados/<int:pk>/', views.DadosDeleteView.as_view(), name='excluir_dados'),
+    path('editar_dados/<int:pk>/', views.DadosUpdateView.as_view(), name='editar_dados'),
 
     # Caminhos parte detalhes dos dados 
-    path('selecionar/', views.selecionar, name='selecionar'),
-    path('detalhe/', views.detalhe, name='detalhe'),
+    path('selecionar_cultivo/', views.selecionar, name='selecionar'),
+    path('selecionar/detalhes_do_cultivo', views.detalhe, name='detalhe'),
     
     # Caminhos cadastrar cultivo
     path('cadastrar_cultivo/', views.cadastrar_cultivo, name='cadastrar_cultivo'),

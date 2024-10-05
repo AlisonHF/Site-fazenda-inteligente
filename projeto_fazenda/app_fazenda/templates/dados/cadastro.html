@@ -4,7 +4,7 @@
 {% block title %}Cadastrar{% endblock %}
 {% block content %}
 
-<form method="POST" action="{% url 'dados_fazenda' %}">
+<form method="POST" action="{% url 'listagem_dados' %}">
     {% csrf_token %}
     <p>{{ form.non_field_errors }}</p>  <!-- Erros gerais -->
 

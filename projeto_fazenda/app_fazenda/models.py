@@ -26,3 +26,6 @@ class Cultivo(models.Model):
     texto_recomendacao = models.TextField(max_length=1200, null=True)
     # Se um usuário for apagado, apagar todos os dados do usuário também
     usuario = models.ForeignKey(get_user_model(), on_delete=models.CASCADE)
+
+    def __str__(self):
+        return self.nome

@@ -19,8 +19,8 @@
       <div class="menu">
         {% if user.is_authenticated %}
             <a href="{% url 'home' %}">HOME</a>
-            <a href="{% url 'cadastro' %}">CADASTRO</a>
-            <a href="{% url 'dados_fazenda' %}">LISTAGEM</a>
+            <a href="{% url 'cadastro_dados' %}">CADASTRO</a>
+            <a href="{% url 'listagem_dados' %}">LISTAGEM</a>
             <a href="{% url 'selecionar' %}">DETALHES</a>
             <a href="{% url 'cadastrar_cultivo' %}">CULTIVO</a>
     
