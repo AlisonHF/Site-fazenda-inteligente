@@ -2,7 +2,7 @@ from django.db import models
 from django.contrib.auth import get_user_model
 
 
-# Criação do nosso banco de dados usado para cadastrar os dados do solo
+# Criação do banco de dados para registrar os dados
 class Dados(models.Model):
     id = models.AutoField(primary_key=True)
     bloco = models.IntegerField()
@@ -14,6 +14,12 @@ class Dados(models.Model):
     # Se um usuário for apagado, apagar todos os dados do usuário também
     usuario = models.ForeignKey(get_user_model(), on_delete=models.CASCADE)
 
+    def __str__(self):
+        return self.cultivo  # Certifique-se de retornar o nome desejado
+
+
+
+# Criação do banco de dados para tipos de cultivos
 class Cultivo(models.Model):
     id = models.AutoField(primary_key=True)
     nome = models.CharField(max_length=255)
@@ -23,3 +29,6 @@ class Cultivo(models.Model):
     imagem = models.CharField(max_length=1000, blank=True, null=True)
     # Se um usuário for apagado, apagar todos os dados do usuário também
     usuario = models.ForeignKey(get_user_model(), on_delete=models.CASCADE)
+
+    def __str__(self):
+        return self.nome  # Certifique-se de retornar o nome desejado

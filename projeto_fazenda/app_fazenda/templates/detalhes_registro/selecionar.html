@@ -8,14 +8,15 @@
         {% csrf_token %}
         <select class="form-select" aria-label="Default select example" name="cultivo">
             <option selected>Selecione o cultivo</option>
-            <option value="Tomate">Tomate</option>
-            <option value="Alface">Alface</option>
-            <option value="Beterraba">Beterraba</option>
+            {% for cultivo in cultivos %}
+                <option value="{{ cultivo.id }}">{{ cultivo.nome }}</option> <!-- A propriedade pode ser o nome do cultivo -->
+            {% empty %}
+                <option disabled>Você não tem cultivos cadastrados.</option>
+            {% endfor %}
         </select>
 
         <br>
         <button type="submit" class="btn btn-success">Selecionar</button>
-
     </form>
 
 {% endblock %}

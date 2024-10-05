@@ -6,7 +6,7 @@ from .form import DadosForm, CultivoForm
 from django.contrib.auth.decorators import login_required
 
 
-# Classe genérica do django para view de delete
+# Classe genérica do django para view de delete nos Dados
 
 class DadosDeleteView(DeleteView):
     model = Dados
@@ -15,8 +15,7 @@ class DadosDeleteView(DeleteView):
 
 
 
-
-# Classe genérica do django para view de update
+# Classe genérica do django para view de update nos Dados
 class DadosUpdateView(UpdateView):
     model = Dados
     form_class = DadosForm
@@ -25,7 +24,7 @@ class DadosUpdateView(UpdateView):
 
 
 
-
+# Classe genérica do django para view de delete nos Cultivos
 class CultivoDeleteView(DeleteView):
     model = Cultivo
     template_name = 'cultivo/excluir.html'
@@ -33,7 +32,7 @@ class CultivoDeleteView(DeleteView):
 
 
 
-
+# Classe genérica do django para view de update nos Cultivos
 class CultivoUpdateView(UpdateView):
     model = Cultivo
     form_class = CultivoForm
@@ -42,30 +41,24 @@ class CultivoUpdateView(UpdateView):
 
 
 
-
-# View cadastro
+# View cadastro dos dados
 @login_required
 def cadastro(request):
-    # Se a requisição da página for POST
     if request.method == 'POST':
-        # Cria o formulário com o ModelForm
-        form = DadosForm(request.POST)
-        # Formulário válido
+        form = DadosForm(request.POST, user=request.user)
         if form.is_valid():
             form.save()
             return redirect('dados_fazenda')
-        # Formulário não é válido
         else:
-            print(form.errors)  # Verifica quais erros estão presentes
-            # Renderiza a página do formulário com os erros
+            print(form.errors)
             return render(request, 'cadastro/cadastro.html', {'form': form})
-    # Se a requisição da página for GET
     else:
-        form = DadosForm()
+        form = DadosForm(user=request.user)
     return render(request, 'cadastro/cadastro.html', {'form': form})
 
 
-# View listagem
+
+# View listagem dos dados
 @login_required
 def listagem(request):
     # Se a requisição da página for POST
@@ -74,7 +67,7 @@ def listagem(request):
         # Formulário válido:
         if form.is_valid():
             dados_instance = form.save(commit=False)  # Não salva ainda
-            dados_instance.usuario = request.user  # Define o usuário antes de salvar
+            dados_instance.usuario = request.user  # Define o usuário
             dados_instance.save()  # Agora salva
             return redirect('dados_fazenda')
         # Formulário não é válido:
@@ -98,7 +91,8 @@ def listagem(request):
 # View para a tela de seleção do cultivo para detalhes
 @login_required
 def selecionar(request):
-    return render(request, 'detalhes_registro/selecionar.html')
+    cultivos = Cultivo.objects.filter(usuario=request.user)
+    return render(request, 'detalhes_registro/selecionar.html', {'cultivos': cultivos})
 
 
 # View para tela de detalhes do cultivo
@@ -125,11 +119,15 @@ def detalhe(request):
     # Caso não houver
     else:
         return render(request, 'detalhes_registro/detalhe.html')
+    
+
 @login_required
 def home(request):
     return render(request, 'inicio/home.html')
 
+
 # Parte cultivos
+
 
 @login_required
 def cadastrar_cultivo(request):
@@ -144,6 +142,7 @@ def cadastrar_cultivo(request):
         form = CultivoForm()
 
     return render(request, 'cultivo/cadastrar.html', {'form': form})
+
 
 @login_required
 def listar_cultivos(request):
