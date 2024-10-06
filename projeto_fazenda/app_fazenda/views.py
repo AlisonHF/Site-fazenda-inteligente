@@ -107,17 +107,15 @@ def selecionar(request):
 def detalhe(request):
     if request.method == 'POST':
         cultivo_nome = request.POST.get('cultivo')
-        print(f"Cultivo selecionado: {cultivo_nome}")  # Verifique o nome do cultivo capturado
         
         # Filtra os cultivos pelo nome e pelo usuário logado
         cultivos = Cultivo.objects.filter(nome=cultivo_nome, usuario=request.user)
-        print(f"Cultivos encontrados: {cultivos}")  # Verifique os cultivos retornados
 
         dados_filtrados = Dados.objects.filter(cultivo=cultivo_nome, usuario=request.user)
 
     # Obtém o último registro
         try:
-            ultimo_registro = dados_filtrados.latest('data')
+            ultimo_registro = dados_filtrados.latest('id')
         except Dados.DoesNotExist:
             ultimo_registro = None
         

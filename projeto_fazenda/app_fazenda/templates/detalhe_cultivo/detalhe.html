@@ -29,7 +29,6 @@
     <h2> Último registro </h2>
     <table class="table table-striped" style="border:2px solid black;">
         <tr>
-            <th>ID</th>
             <th>Bloco</th>
             <th>Cultivo</th>
             <th>PH</th>
@@ -42,7 +41,6 @@
         {% if ultimo_registro %}
         <!-- Caso tenha ele exibe -->
         <tr>
-            <td>{{ ultimo_registro.id }}</td>
             <td>{{ ultimo_registro.bloco }}</td>
             <td>{{ ultimo_registro.cultivo }}</td>
             <td>{{ ultimo_registro.ph }}</td>
