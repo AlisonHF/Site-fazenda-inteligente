@@ -8,7 +8,7 @@ from .models import Dados, Cultivo
 class DadosForm(forms.ModelForm):
     # Variável que seta o campo cultivo com opções do model Cultivo
     cultivo = forms.ModelChoiceField(
-        queryset=Cultivo.objects.none(),
+        queryset=Cultivo.objects,
         widget=forms.Select(attrs={'class': 'form-select'}),
         empty_label="Escolha uma opção"
     )

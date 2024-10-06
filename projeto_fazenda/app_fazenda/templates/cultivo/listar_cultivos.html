@@ -7,7 +7,6 @@
 <table class="table table-striped table-bordered">
 
     <tr>
-        <td>ID</td>
         <td>Nome</td>
         <td>Umidade recomendada</td>
         <td>pH recomendado</td>
@@ -16,7 +15,6 @@
     </tr>
     {% for dado in dados %}
     <tr>    
-        <td>{{ dado.pk }}</td>
         <td>{{ dado.nome }}</td>
         <td>{{ dado.umidade_recomendado }}</td>
         <td>{{dado.ph_recomendado }}</td>
@@ -29,9 +27,5 @@
     {% endfor %}
     
 </table>
-
-{% for cultivo in dados %}
-    <p>ID: {{ cultivo.pk }} - Nome: {{ cultivo.nome }}</p>
-{% endfor %}
 
 {% endblock %}

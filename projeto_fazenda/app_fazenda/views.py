@@ -44,6 +44,7 @@ class CultivoUpdateView(UpdateView):
 # View cadastro dos dados
 @login_required
 def cadastro(request):
+    print(request.POST)
     # Se a requisição da página for POST
     if request.method == 'POST':
         
@@ -112,9 +113,19 @@ def detalhe(request):
         cultivos = Cultivo.objects.filter(nome=cultivo_nome, usuario=request.user)
         print(f"Cultivos encontrados: {cultivos}")  # Verifique os cultivos retornados
 
+        dados_filtrados = Dados.objects.filter(cultivo=cultivo_nome, usuario=request.user)
+
+    # Obtém o último registro
+        try:
+            ultimo_registro = dados_filtrados.latest('data')
+        except Dados.DoesNotExist:
+            ultimo_registro = None
+        
+
         # Coloca os dados do contexto em um dict para renderizar as páginas com as informações do dict
         dados = {
             'cultivos': cultivos,
+            'ultimo_registro': ultimo_registro
         }
 
         # Renderiza a página com os dados dos cultivos
