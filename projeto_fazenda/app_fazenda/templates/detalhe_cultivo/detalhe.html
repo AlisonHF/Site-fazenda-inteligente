@@ -1,63 +1,69 @@
 {% extends 'base.html' %}
 {% load static %}
-{% block title %}Detalhes do cultivo{% endblock %}
+{% block title %}Detalhes do Cultivo{% endblock %}
 {% block content %}
 
-<div class="container-detalhe">
+<div class="container mt-5">
     {% if cultivos %}
-        {% for cultivo in cultivos %}
-        <!-- Parte esquerda da página -->
-        <div class="esquerda">
-            <h2>Cultivo</h2>
-            <h2>{{ cultivo.nome }}</h2>
+        <div class="row justify-content-center">
+            {% for cultivo in cultivos %}
+            <div class="col-md-8 mb-4">
+                <div class="card">
+                    <div class="card-header bg-success text-white">
+                        <h4 class="text-center">{{ cultivo.nome }}</h4>
+                    </div>
+                    <div class="card-body">
+                        <h5>Recomendações do Cultivo</h5>
+                        <p><strong>Umidade recomendada:</strong> {{ cultivo.umidade_recomendado }}%</p>
+                        <p><strong>pH recomendado:</strong> {{ cultivo.ph_recomendado }}</p>
+                        <p>{{ cultivo.texto_recomendacao }}</p>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
         </div>
-        <!-- Parte direita da página -->
-        <div class="direita">
-            <h2>Recomendações do cultivo</h2>
-            <p>A umidade recomendada é de {{ cultivo.umidade_recomendado }}%</p>
-            <p>O pH recomendado é de {{ cultivo.ph_recomendado }}</p>
-            <br>
-            <p>{{ cultivo.texto_recomendacao }}</p>
-        </div>
-        {% endfor %}
     {% else %}
-        <p>Nenhum cultivo encontrado ou selecionado.</p>
+        <div class="alert alert-warning text-center" role="alert">
+            Nenhum cultivo encontrado ou selecionado.
+        </div>
     {% endif %}
 </div>
 
-<div>
-    <h2> Último registro </h2>
-    <table class="table table-striped" style="border:2px solid black;">
-        <tr>
-            <th>Bloco</th>
-            <th>Cultivo</th>
-            <th>PH</th>
-            <th>Umidade</th>
-            <th>Textura</th>
-            <th>Data da inclusâo</th>
-        </tr>
-
-        <!-- Verifica se tem algum ultimo registro-->
-        {% if ultimo_registro %}
-        <!-- Caso tenha ele exibe -->
-        <tr>
-            <td>{{ ultimo_registro.bloco }}</td>
-            <td>{{ ultimo_registro.cultivo }}</td>
-            <td>{{ ultimo_registro.ph }}</td>
-            <td>{{ ultimo_registro.umidade }}</td>
-            <td>{{ ultimo_registro.textura }}</td>
-            <td>{{ ultimo_registro.data }}</td>
-        </tr>
-
-        <!-- Caso não tenha -->
-        {% else %}
-        <h2> Exibindo tela sem registro </h2>
-        <tr>
-            <td colspan="8">Nenhum registro encontrado ou selecionado.</td>
-        </tr>
-        {% endif %}
-        
-    </table>
+<div class="container mt-5">
+    <h2 class="text-center mb-4">Último Registro</h2>
+    <div class="table-responsive">
+        <table class="table table-striped table-bordered">
+            <thead class="table-dark">
+                <tr>
+                    <th>Bloco</th>
+                    <th>Cultivo</th>
+                    <th>pH</th>
+                    <th>Umidade</th>
+                    <th>Textura</th>
+                    <th>Data da Inclusão</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Verifica se tem algum último registro -->
+                {% if ultimo_registro %}
+                    <!-- Caso tenha, ele exibe -->
+                    <tr>
+                        <td>{{ ultimo_registro.bloco }}</td>
+                        <td>{{ ultimo_registro.cultivo }}</td>
+                        <td>{{ ultimo_registro.ph }}</td>
+                        <td>{{ ultimo_registro.umidade }}</td>
+                        <td>{{ ultimo_registro.textura }}</td>
+                        <td>{{ ultimo_registro.data }}</td>
+                    </tr>
+                {% else %}
+                    <!-- Caso não tenha -->
+                    <tr>
+                        <td colspan="6" class="text-center">Nenhum registro encontrado ou selecionado.</td>
+                    </tr>
+                {% endif %}
+            </tbody>
+        </table>
+    </div>
 </div>
 
 {% endblock %}

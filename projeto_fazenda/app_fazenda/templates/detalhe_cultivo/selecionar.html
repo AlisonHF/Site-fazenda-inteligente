@@ -3,17 +3,16 @@
 {% block title %}Selecionar Cultivo{% endblock %}
 {% block content %}
 
-<div class="container-selecionar">
-    <h2>Selecione um Cultivo</h2>
-    <form method="post" action="{% url 'detalhe' %}">
+<div class="div-cadastro">
+    <h1>Selecione um Cultivo</h1>
+    <form method="post" action="{% url 'detalhe' %}" class="row g-3">
         {% csrf_token %}
-        <label for="cultivo">Cultivo:</label>
-        <select name="cultivo" id="cultivo">
+        <select name="cultivo" id="cultivo" class="form-select">
             {% for cultivo in cultivos %}
                 <option value="{{ cultivo.nome }}">{{ cultivo.nome }}</option>
             {% endfor %}
         </select>
-        <button type="submit">Buscar</button>
+        <button type="submit" class="btn btn-success">Buscar</button>
     </form>
 </div>
 

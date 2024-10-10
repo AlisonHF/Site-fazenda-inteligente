@@ -1,18 +1,22 @@
 {% extends 'base.html' %}
 
 {% block title %}Confirmar exclusão{% endblock %}
+
 {% block content %}
+<div class="container mt-5">
+    <div class="alert alert-warning" role="alert">
+        <h4 class="alert-heading">Tem certeza que deseja excluir este dado?</h4>
+        <hr>
+        <p><strong>Bloco:</strong> {{ object.bloco }}</p>
+        <p><strong>Cultivo:</strong> {{ object.cultivo }}</p>
+        <p><strong>pH:</strong> {{ object.ph }}</p>
+        <p><strong>Textura:</strong> {{ object.textura }}</p>
+    </div>
 
-  <h2>Tem certeza de que deseja excluir este dado?</h2>
-  <p>Bloco: {{ object.bloco }}</p>
-  <p>cultivo: {{ object.cultivo }}</p>
-  <p>PH: {{ object.ph }}</p>
-  <p>Textura: {{ object.textura }}</p>
-
-  <form method="POST">
-    {% csrf_token %}
-    <button type="submit" class="btn btn-danger">Excluir</button>
-    <a href="{% url 'listagem_dados' %}" class="btn btn-secondary">Cancelar</a>
-  </form>
-
+    <form method="POST" class="mt-3">
+        {% csrf_token %}
+        <button type="submit" class="btn btn-danger me-2">Excluir</button>
+        <a href="{% url 'listagem_dados' %}" class="btn btn-secondary">Cancelar</a>
+    </form>
+</div>
 {% endblock %}

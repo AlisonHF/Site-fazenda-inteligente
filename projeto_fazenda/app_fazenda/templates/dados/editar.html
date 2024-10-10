@@ -1,13 +1,28 @@
 {% extends 'base.html' %}
 {% block title %}Editar dados{% endblock %}
+{% load crispy_forms_tags %}
 {% block content %}
+<div class="container mt-5">
+    <h1 class="text-center mb-4">Editar Dados</h1>
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card">
+                <div class="card-header text-center">
+                    Preencha os campos abaixo
+                </div>
+                <div class="card-body">
+                    <form method="POST">
+                        {% csrf_token %}
+                        {{ form|crispy }}  <!-- Utilize crispy forms para renderizar o formulário -->
 
-<!-- Traz o formulário para edição -->
-<h1>Editar Dados</h1>
-<form method="POST">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit" class="btn btn-primary">Salvar alterações</button>
-</form>
-
+                        <div class="text-center mt-4">
+                            <button type="submit" class="btn btn-primary btn-lg">Salvar alterações</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 {% endblock %}
+

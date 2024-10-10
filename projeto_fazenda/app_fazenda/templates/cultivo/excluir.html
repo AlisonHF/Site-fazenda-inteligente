@@ -1,20 +1,22 @@
 {% extends 'base.html' %}
 
-{% block title %}Confirmar exclusão{% endblock %}
+{% block title %}Confirmar Exclusão{% endblock %}
+
 {% block content %}
+<div class="container mt-5">
+    <div class="alert alert-warning" role="alert">
+        <h4 class="alert-heading">Tem certeza que deseja excluir este dado?</h4>
+        <hr>
+        <p><strong>Nome:</strong> {{ object.nome }}</p>
+        <p><strong>Umidade recomendada:</strong> {{ object.umidade_recomendado }}</p>
+        <p><strong>pH recomendado:</strong> {{ object.ph_recomendado }}</p>
+        <p><strong>Texto de recomendação:</strong> {{ object.texto_recomendacao }}</p>
+    </div>
 
-  <h2>Tem certeza de que deseja excluir este dado?</h2>
-
-  <p>ID: {{ object.pk }}</p>
-  <p>Nome: {{ object.nome }}</p>
-  <p>Umidade recomendada: {{ object.umidade_recomendado }}</p>
-  <p>pH recomendada: {{ object.ph_recomendado }}</p>
-  <p>Texto de recomendação: {{ object.texto_recomendacao }}</p>
-
-  <form method="POST">
-      {% csrf_token %}
-      <button type="submit" class="btn btn-danger">Excluir</button>
-      <a href="{% url 'listar_cultivos' %}" class="btn btn-secondary">Cancelar</a>
-  </form>
-
+    <form method="POST" class="mt-3">
+        {% csrf_token %}
+        <button type="submit" class="btn btn-danger me-2">Excluir</button>
+        <a href="{% url 'listar_cultivos' %}" class="btn btn-secondary">Cancelar</a>
+    </form>
+</div>
 {% endblock %}

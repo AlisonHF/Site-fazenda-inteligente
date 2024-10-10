@@ -27,7 +27,7 @@ class DadosUpdateView(UpdateView):
 # Classe genérica do django para view de delete nos Cultivos
 class CultivoDeleteView(DeleteView):
     model = Cultivo
-    template_name = 'dados/excluir.html'
+    template_name = 'cultivo/excluir.html'
     success_url = reverse_lazy('listar_cultivos')
 
 

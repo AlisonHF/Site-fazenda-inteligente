@@ -8,32 +8,79 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>{% block title %}Meu Sistema{% endblock %}</title>
     {% load static %}
+
     <link rel="stylesheet" href="{% static 'bootstrap/css/bootstrap.min.css' %}">
-    <link rel="stylesheet" href="{% static 'css/styles_cadastro.css' %}" type="text/css">
-    <link rel="stylesheet" href="{% static 'css/styles_detalhes_registro.css' %}" type="text/css">
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}" type="text/css">
   </head>
   <body>
 
     <!-- Cabeçalho -->
     <header>
-      <div class="menu">
-        {% if user.is_authenticated %}
-            <a href="{% url 'home' %}">HOME</a>
-            <a href="{% url 'cadastro_dados' %}">CADASTRO</a>
-            <a href="{% url 'listagem_dados' %}">LISTAGEM</a>
-            <a href="{% url 'selecionar' %}">DETALHES</a>
-            <a href="{% url 'cadastrar_cultivo' %}">CULTIVO</a>
-    
-            <form action="{% url 'logout' %}" method="post" style="display: inline;">
-                {% csrf_token %}
-                <button type="submit" class="btn btn-danger">Sair</button>
-            </form>
-        {% else %}
-            <a href="/accounts/login">Entrar</a>
-        {% endif %}
-    </div>
-    </header>
-
+      <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: green;">
+          <div class="container-fluid">
+              <a class="navbar-brand" href="{% url 'home' %}">Fazenda-Inteligente</a>
+  
+              <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                  <span class="navbar-toggler-icon"></span>
+              </button>
+  
+              <div class="collapse navbar-collapse" id="navbarNav">
+                  <ul class="navbar-nav me-auto">
+                      {% if user.is_authenticated %}
+                          <li class="nav-item dropdown">
+                              <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                  Cadastros
+                              </a>
+                              <ul class="dropdown-menu">
+                                  <li><a class="dropdown-item" href="{% url 'cadastrar_cultivo' %}">Cadastrar cultivo</a></li>
+                                  <li><a class="dropdown-item" href="{% url 'cadastro_dados' %}">Cadastrar dados</a></li>
+                              </ul>
+                          </li>
+  
+                          <li class="nav-item dropdown">
+                              <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                  Listagem
+                              </a>
+                              <ul class="dropdown-menu">
+                                  <li><a class="dropdown-item" href="{% url 'listar_cultivos' %}">Listar cultivos</a></li>
+                                  <li><a class="dropdown-item" href="{% url 'listagem_dados' %}">Listar dados</a></li>
+                              </ul>
+                          </li>
+  
+                          <li class="nav-item">
+                              <a class="nav-link" href="{% url 'selecionar' %}">Detalhes</a>
+                          </li>
+                      {% else %}
+                          <li class="nav-item">
+                              <a class="nav-link" href="/accounts/login">Entrar</a>
+                          </li>
+                          <li class="nav-item">
+                              <a class="nav-link" href="/accounts/register">Cadastrar-se</a>
+                          </li>
+                      {% endif %}
+                  </ul>
+                  <form action="{% url 'logout' %}" method="post" style="display: inline;">
+                      {% csrf_token %}
+                      <button type="submit" class="btn btn-outline-light">Sair</button>
+                  </form>
+              </div>
+          </div>
+      </nav>
+      
+      <style>
+          .nav-link {
+              color: white !important; /* Sempre branco */
+          }
+          .nav-link:hover {
+              color: white !important; /* Branco ao passar o mouse */
+          }
+          .dropdown-item:hover {
+              background-color: green; /* Cor de fundo do item do dropdown ao passar o mouse */
+              color: white; /* Texto do item do dropdown sempre branco */
+          }
+      </style>
+  </header>
+  
     <div class="container mt-4">
         {% block content %}
         <!-- O conteúdo de cada pagina sera inserido aqui -->

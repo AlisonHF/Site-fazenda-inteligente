@@ -1,0 +1,123 @@
+/* Estilos aplicados nas páginas HTML */
+
+@import url('https://fonts.googleapis.com/css2?family=Arvo&display=swap');
+
+/* Base */
+* {
+    padding: 0;
+    margin: 0;
+}
+
+body, html {
+    height: 100%;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    font-family: 'Arvo', serif;
+}
+
+.menu {
+    background-color: green;
+    height: 60px;
+    align-content: center;
+    text-align: center;
+}
+
+.a-menu {
+    text-decoration: none;
+    margin: 20px;
+    color: white;
+    font-size: 18px;
+}
+
+a{
+    text-decoration: none;
+    margin: 20px;
+    color: white;
+    font-size: 18px;  
+}
+
+h1 {
+    text-align: center;
+    color: green;
+    margin: 20px;
+}
+
+/* Home */
+
+
+.div-home {
+    margin: auto;
+    width: 50%;
+}
+
+.botao-home {
+    width: 500px;
+    height: 80px;
+}
+
+.bem-vindo {
+    text-align: center;
+}
+
+/* Cadastro dados */
+
+.div-cadastro {
+    display: block;
+    width: 50%;
+    margin: 0 auto;
+    padding: 5px 15px 15px 15px;
+}
+
+/* Tela listagem */
+
+#lista-dados {
+    width: 80%;
+}
+
+#div-lista {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Classe de erro do Django */
+.errorlist{
+    font-size: 14px;
+    color:red;
+} 
+
+
+/* Estilos na pasta detalhes_registros */
+#container-detalhe {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+}
+
+#esquerda {
+    text-align: center;
+}
+
+#direita {
+    text-align: center;
+}
+
+/* Lista e cadastro cultivos */
+
+#tabela-cultivos {
+    width: 90%;
+}
+
+#div-cultivo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#div-cadastro-cultivo {
+    display: block;
+    width: 80%;
+    margin: 0 auto;
+    padding: 5px 15px 15px 15px;
+}

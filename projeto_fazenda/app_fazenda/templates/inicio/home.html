@@ -1,7 +1,30 @@
 {% extends 'base.html' %}
 
 {% block content %}
-
-<h1>Bem vindo</h1>
-
+<div class="container mt-5">
+    <h1 class="text-center mb-4">Bem-vindo à Fazenda Inteligente</h1>
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card text-center">
+                <div class="card-header">
+                    O que você gostaria de fazer?
+                </div>
+                <div class="card-body">
+                    <div class="mb-3">
+                        <a href="" class="btn btn-success btn-lg">Cadastrar dados</a>
+                    </div>
+                    <div class="mb-3">
+                        <a href="" class="btn btn-success btn-lg">Ver Listagem</a>
+                    </div>
+                    <div class="mb-3">
+                        <a href="" class="btn btn-success btn-lg">Cadastrar cultivos</a>
+                    </div>
+                </div>
+                <div class="card-footer text-muted">
+                    Use as opções acima para gerenciar seus dados.
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 {% endblock %}
