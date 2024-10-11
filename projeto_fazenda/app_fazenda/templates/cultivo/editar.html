@@ -13,10 +13,11 @@
                 <div class="card-body">
                     <form method="POST">
                         {% csrf_token %}
-                        {{ form|crispy }}  <!-- Utilize crispy forms para renderizar o formulário -->
+                        {{ form|crispy }}
 
                         <div class="text-center mt-4">
-                            <button type="submit" style="margin-bottom: 50px;" class="btn btn-primary btn-lg">Salvar alterações</button>
+                            <button type="submit" class="btn btn-primary btn-lg">Salvar alterações</button>
+                            <a href="{% url 'listar_cultivos' %}" class="btn btn-secondary btn-lg">Cancelar</a>
                         </div>
                     </form>
                 </div>

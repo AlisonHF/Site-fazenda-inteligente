@@ -13,21 +13,6 @@ body, html {
     margin: 0;
     display: flex;
     flex-direction: column;
-    font-family: 'Arvo', serif;
-}
-
-.menu {
-    background-color: green;
-    height: 60px;
-    align-content: center;
-    text-align: center;
-}
-
-.a-menu {
-    text-decoration: none;
-    margin: 20px;
-    color: white;
-    font-size: 18px;
 }
 
 a{
@@ -43,21 +28,20 @@ h1 {
     margin: 20px;
 }
 
-/* Home */
-
-
-.div-home {
-    margin: auto;
-    width: 50%;
+.nav-link {
+    color: white !important;
+}
+.nav-link:hover {
+    color: white !important;
+}
+.dropdown-item:hover {
+    background-color: green;
+    color: white; 
 }
 
-.botao-home {
-    width: 500px;
-    height: 80px;
-}
-
-.bem-vindo {
-    text-align: center;
+.dropdown-item:hover {
+    background-color: transparent;
+    color: inherit;
 }
 
 /* Cadastro dados */
@@ -86,22 +70,6 @@ h1 {
     font-size: 14px;
     color:red;
 } 
-
-
-/* Estilos na pasta detalhes_registros */
-#container-detalhe {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 10px;
-}
-
-#esquerda {
-    text-align: center;
-}
-
-#direita {
-    text-align: center;
-}
 
 /* Lista e cadastro cultivos */
 

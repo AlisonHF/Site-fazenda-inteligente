@@ -1,54 +1,42 @@
-{% extends 'base.html' %} <!-- Trazendo o arquivo base -->
+{% extends 'base.html' %}
+
+{% load crispy_forms_tags %}
 
 {% block title %}Cadastrar Cultivo{% endblock %}
 
 {% block content %}
-
-<div id="div-cadastro-cultivo">
+<div class="container mt-5 p-4 bg-light border rounded shadow" style="margin-bottom: 50px;">
+    <h1 class="mb-4">Cadastre o cultivo</h1>
     <form method="POST" action="{% url 'cadastrar_cultivo' %}">
-        <h1>Cadastre o cultivo</h1>
-        <hr>
         {% csrf_token %}
-        <p>{{ form.non_field_errors }}</p>  <!-- Erros gerais -->
+        <p>{{ form.non_field_errors }}</p>
 
-        <div class="mb-3 row">
-            <label class="col-sm-2 col-form-label">Nome: </label>
-            <div class="col-sm-10">
-                {{ form.nome }}
-                <p>{{ form.nome.errors }}</p>  <!-- Erros específicos do campo -->
-            </div>
+        <div class="form-group">
+            <label for="id_nome">Nome do Cultivo</label>
+            {{ form.nome }}
+            <div class="text-danger">{{ form.nome.errors }}</div> 
         </div>
 
-        <div class="mb-3 row">
-            <label class="col-sm-2 col-form-label">pH recomendado: </label>
-            <div class="col-sm-10">
-                {{ form.ph_recomendado }}
-                <p>{{ form.ph_recomendado.errors }}</p>
-            </div>
+        <div class="form-group">
+            <label for="id_umidade_recomendado">Umidade Recomendada (%)</label>
+            {{ form.umidade_recomendado }}
+            <div class="text-danger">{{ form.umidade_recomendado.errors }}</div> 
+
+        <div class="form-group">
+            <label for="id_ph_recomendado">pH Recomendado</label>
+            {{ form.ph_recomendado }}
+            <div class="text-danger">{{ form.ph_recomendado.errors }}</div>
         </div>
 
-        <div class="mb-3 row">
-            <label class="col-sm-2 col-form-label">Umidade recomendada: </label>
-            <div class="col-sm-10">
-                {{ form.umidade_recomendado }}
-                <p>{{ form.umidade_recomendado.errors }}</p>
-            </div>
+        <div class="form-group">
+            <label for="id_texto_recomendacao">Recomendações</label>
+            {{ form.texto_recomendacao }} 
+            <div class="text-danger">{{ form.texto_recomendacao.errors }}</div> 
         </div>
 
-        
-
-        <div class="mb-3 row">
-            <label class="col-sm-2 col-form-label">Texto recomendado: </label>
-            <div class="col-sm-10">
-                {{ form.texto_recomendacao }}
-                <p>{{ form.texto_recomendacao.errors }}</p>
-            </div>
-        </div>
-
-        <div> 
+        <div class="mt-3">
             <button type="submit" class="btn btn-primary">Enviar</button>
         </div>
-        </form>
-    </div>
+    </form>
 </div>
 {% endblock %}

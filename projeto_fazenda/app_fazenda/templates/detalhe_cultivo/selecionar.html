@@ -1,8 +1,8 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block title %}Selecionar Cultivo{% endblock %}
-{% block content %}
 
+{% block content %}
 <div class="div-cadastro">
     <h1>Selecione um Cultivo</h1>
     <form method="post" action="{% url 'detalhe' %}" class="row g-3">
@@ -15,5 +15,4 @@
         <button type="submit" class="btn btn-success">Buscar</button>
     </form>
 </div>
-
 {% endblock %}

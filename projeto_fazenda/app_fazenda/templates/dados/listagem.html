@@ -1,45 +1,44 @@
-{% extends 'base.html' %} <!-- Trazendo o arquivo base -->
+{% extends 'base.html' %}
 
-{% block title %}Listagem{% endblock %}
+{% block title %}Listagem dos Dados{% endblock %}
 
 {% block content %}
-
-<h1>Listagem dos dados</h1>
-<div id="div-lista">
-    <!--Tabela com a listagem dos dados-->
-    <table class="table table-hover" id="lista-dados">
-
-        <tr>
-            <th>ID</th>
-            <th>Bloco</th>
-            <th>Cultivo</th>
-            <th>PH</th>
-            <th>Umidade</th>
-            <th>Textura</th>
-            <th>Data da inclusâo</th>
-            <th>Edição / Exclusão</th>
-        </tr>
-
-        <!--Iteração dentro do banco de dados-->
-        {% for dado in dados %}
-
-        <tr>    
-            <td>{{ dado.id }}</td>
-            <td>{{ dado.bloco }}</td>
-            <td>{{dado.cultivo }}</td>
-            <td>{{ dado.ph }}</td>
-            <td>{{ dado.umidade }}</td>
-            <td>{{ dado.textura }}</td>  
-            <td>{{ dado.data }}</td>
-            <td>
-                <a href="{% url 'editar_dados' dado.pk %}" class="btn btn-warning">Editar</a>
-                <a href="{% url 'excluir_dados' dado.pk %}" class="btn btn-danger">Excluir</a>
-            </td>
-        </tr>
-
-        {% endfor %}
-    </table>
+<div class="container mt-5">
+    <h1 class="mb-4 text-center">Listagem dos Dados</h1>
+    <hr>
+    <div id="div-lista" class="table-responsive">
+        <table class="table table-bordered table-striped text-center align-middle" id="lista-dados">
+            <thead class="bg-success text-white">
+                <tr>
+                    <th>Bloco</th>
+                    <th>Cultivo</th>
+                    <th>PH</th>
+                    <th>Umidade</th>
+                    <th>Textura</th>
+                    <th>Data de Inclusão</th>
+                    <th>Ações</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Iteração dentro do banco de dados -->
+                {% for dado in dados %}
+                <tr>    
+                    <td>{{ dado.bloco }}</td>
+                    <td>{{ dado.cultivo }}</td>
+                    <td>{{ dado.ph }}</td>
+                    <td>{{ dado.umidade }}</td>
+                    <td>{{ dado.textura }}</td>  
+                    <td>{{ dado.data }}</td>
+                    <td>
+                        <div class="d-flex justify-content-center">
+                            <a href="{% url 'editar_dados' dado.pk %}" class="btn btn-warning mx-1">Editar</a>
+                            <a href="{% url 'excluir_dados' dado.pk %}" class="btn btn-danger mx-1">Excluir</a>
+                        </div>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
 </div>
-
 {% endblock %}
-

@@ -13,10 +13,15 @@
                 <div class="card-body">
                     <form method="POST">
                         {% csrf_token %}
-                        {{ form|crispy }}  <!-- Utilize crispy forms para renderizar o formulário -->
+                        {{ form|crispy }} 
 
                         <div class="text-center mt-4">
                             <button type="submit" class="btn btn-primary btn-lg">Salvar alterações</button>
+                            <a href="{% url 'listagem_dados' %}" class="btn btn-secondary btn-lg">Cancelar</a>
+                        </div>
+
+                        <div class="text-center mt-4">
+                            
                         </div>
                     </form>
                 </div>
@@ -25,4 +30,3 @@
     </div>
 </div>
 {% endblock %}
-

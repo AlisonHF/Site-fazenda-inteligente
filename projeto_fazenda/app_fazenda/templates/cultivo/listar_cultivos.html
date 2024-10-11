@@ -2,32 +2,38 @@
 
 {% block content %}
 
-<h1>Listagem dos cultivos</h1>
-<hr>
-<div id="div-cultivo">
-    <table class="table table-hover table-bordered" id="tabela-cultivos">
-
-        <tr>
-            <td>Nome</td>
-            <td>Umidade recomendada</td>
-            <td>pH recomendado</td>
-            <td style="text-align: center;">Texto de recomendação</td>
-            <td></td>
-        </tr>
-        {% for dado in dados %}
-        <tr>    
-            <td>{{ dado.nome }}</td>
-            <td>{{ dado.umidade_recomendado }}</td>
-            <td>{{dado.ph_recomendado }}</td>
-            <td>{{ dado.texto_recomendacao }}</td>
-            <td>
-                <a href="{% url 'editar_cultivo' dado.pk %}" class="btn btn-warning">Editar</a>
-                <a href="{% url 'excluir_cultivo' dado.pk %}" class="btn btn-danger">Excluir</a>
-            </td>
-        </tr>
-        {% endfor %}
-        
-    </table>
+<div class="container mt-5">
+    <h1 class="mb-4 text-center">Listagem dos Cultivos</h1>
+    <hr>
+    <div id="div-cultivo" class="table-responsive">
+        <table class="table table-bordered table-striped text-center align-middle" id="tabela-cultivos">
+            <thead class="bg-success text-white">
+                <tr>
+                    <th>Nome</th>
+                    <th>Umidade Recomendada</th>
+                    <th>pH Recomendado</th>
+                    <th>Texto de Recomendação</th>
+                    <th>Ações</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for dado in dados %}
+                <tr>
+                    <td>{{ dado.nome }}</td>
+                    <td>{{ dado.umidade_recomendado }}</td>
+                    <td>{{ dado.ph_recomendado }}</td>
+                    <td>{{ dado.texto_recomendacao }}</td>
+                    <td>
+                        <div class="d-flex justify-content-center">
+                            <a href="{% url 'editar_cultivo' dado.pk %}" class="btn btn-warning mx-1">Editar</a>
+                            <a href="{% url 'excluir_cultivo' dado.pk %}" class="btn btn-danger mx-1">Excluir</a>
+                        </div>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
 </div>
 
 {% endblock %}

@@ -1,58 +1,20 @@
-{% extends 'base.html' %} <!-- Trazendo o arquivo base -->
+{% extends 'base.html' %}
 
+{% load crispy_forms_tags %}
 
 {% block title %}Cadastrar{% endblock %}
 {% block content %}
 
-<div class="div-cadastro">
-    <h1>Registre os dados</h1>
+<div class="container mt-5 p-4 bg-light border rounded shadow" style="margin-bottom: 50px;">
+    <h1 class="mb-4">Registre os dados</h1>
     <form method="POST" action="{% url 'listagem_dados' %}">
         {% csrf_token %}
-        <p>{{ form.non_field_errors }}</p>  <!-- Erros gerais -->
-
-        <div class="mb-3 row">
-            <label class="col-sm-2 col-form-label">Bloco: </label>
-            <div class="col-sm-10">
-                {{ form.bloco }}
-                <p>{{ form.bloco.errors }}</p>  <!-- Erros específicos do campo -->
-            </div>
-        </div>
-
-        <div class="mb-3 row">
-            <label class="col-sm-2 col-form-label">Cultivo: </label>
-            <div class="col-sm-10">
-                {{ form.cultivo }}
-                <p>{{ form.cultivo.errors }}</p>
-            </div>
-        </div>
-
-        <div class="mb-3 row">
-            <label class="col-sm-2 col-form-label">PH: </label>
-            <div class="col-sm-10">
-                {{ form.ph }}
-                <p>{{ form.ph.errors }}</p>
-            </div>
-        </div>
-
-        <div class="mb-3 row">
-            <label class="col-sm-2 col-form-label">Umidade: </label>
-            <div class="col-sm-10">
-                {{ form.umidade }}
-                <p>{{ form.umidade.errors }}</p>
-            </div>
-        </div>
-
-        <div class="mb-3 row">
-            <label class="col-sm-2 col-form-label">Textura: </label>
-            <div class="col-sm-10">
-                {{ form.textura }}
-                <p>{{ form.textura.errors }}</p>
-            </div>
-        </div>
-
-        <div> 
-            <button type="submit" class="btn btn-primary">Enviar</button>
+        {{ form|crispy }}
+        
+        <div class="mt-3">
+            <button type="submit" class="btn btn-success">Enviar</button>
         </div>
     </form>
 </div>
+
 {% endblock %}
