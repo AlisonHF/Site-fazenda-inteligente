@@ -1,8 +1,11 @@
 {% extends 'base.html' %}
 
+{% block title %}Listagem de cultivos{% endblock %}
+
 {% block content %}
 
 <div class="container mt-5">
+    <a style="margin: 0;" href="{% url 'cadastrar_cultivo' %} " class="btn btn-success">Voltar ao cadastro</a>
     <h1 class="mb-4 text-center">Listagem dos Cultivos</h1>
     <hr>
     <div id="div-cultivo" class="table-responsive">
